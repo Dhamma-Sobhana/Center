@@ -1,0 +1,42 @@
+server {
+    listen       80  default_server;
+    server_name  _; # some invalid name that won't match anything
+    return       444;
+}
+
+server {
+  server_name www.${VIRTUAL_HOST};
+
+  return 301 http://${VIRTUAL_HOST}$request_uri;
+}
+
+server {
+  server_name ${VIRTUAL_HOST};
+
+  location = /robots.txt {
+    add_header Content-Type text/plain;
+    return 200 "User-agent: *\nDisallow: /\n";
+  }
+
+  location / {
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+
+    proxy_pass http://frontend:3000;
+  }
+}
+
+server {
+  server_name api.${VIRTUAL_HOST};
+
+  location / {
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+
+    proxy_pass http://backend:1337/;
+  }
+}

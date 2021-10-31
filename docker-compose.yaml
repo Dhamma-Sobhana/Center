@@ -1,0 +1,45 @@
+version: "3.9"
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+    restart: unless-stopped
+    # ports:
+    #   - "3000:3000"
+  backend:
+    image: strapi/strapi
+    environment:
+      DATABASE_CLIENT: postgres
+      DATABASE_NAME: strapi
+      DATABASE_HOST: postgres
+      DATABASE_PORT: 5432
+      DATABASE_USERNAME: strapi
+      DATABASE_PASSWORD: strapi
+    volumes:
+      - ./backend:/srv/app
+    # ports:
+    #   - '1337:1337'
+    depends_on:
+      - postgres
+    restart: unless-stopped
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_DB: strapi
+      POSTGRES_USER: strapi
+      POSTGRES_PASSWORD: strapi
+    volumes:
+      - ./data:/var/lib/postgresql/data
+  nginx-proxy:
+    image: nginx
+    environment:
+      VIRTUAL_HOST: ${VIRTUAL_HOST}
+    volumes:
+      - ./nginx/templates:/etc/nginx/templates
+      - /etc/nginx/vhost.d
+      - /usr/share/nginx/html
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    ports:
+      - '80:80'
+    restart: unless-stopped
