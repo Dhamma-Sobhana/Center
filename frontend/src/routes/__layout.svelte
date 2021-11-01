@@ -1,9 +1,9 @@
 <script>
     import { each } from "svelte/internal";
-    import Navbar from "$lib/Navbar.svelte";
+    import Nav from "$lib/nav.svelte";
 </script>
 
-<Navbar />
+<Nav />
 
 <slot></slot>
 
