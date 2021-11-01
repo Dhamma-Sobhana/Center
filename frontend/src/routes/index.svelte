@@ -6,32 +6,29 @@
     <title>Sobhana Center</title>
 </svelte:head>
 
-<main>
-    <h1>Sobhana Center</h1>
-
-    <div class="pages">
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 class="display-1 mb-4">Sobhana Center</h1>
+        </div>
+    </div>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4">
         {#each pages as page}
-        <div class="page">
-            <a href="{page.path}">{page.text}</a>
+        <div class="col">
+            <div class="card h-100 text-dark bg-light border-light">
+                <div class="card-header"><i class="bi bi-{page.icon}"></i></div>
+                <div class="card-body">
+                    <h2 class="card-title"><a href="{page.path}" class="stretched-link">{page.text}</a></h2>
+                </div>
+            </div>
         </div>
         {/each}
     </div>
-</main>
+</div>
 
 <style>
-    .pages {
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: space-around;
-    }
-
-    .page {
-        width: 200px;
-        border: 1px solid black;
-        border-radius: 1em;
-        padding: 2em;
-        margin-top: 1em;
-        text-align: center;
-        font-weight: bold;
+    .card a {
+        text-decoration: none;
+        color: black;
     }
 </style>
