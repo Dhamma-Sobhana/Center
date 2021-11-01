@@ -1,0 +1,23 @@
+{
+  "kind": "collectionType",
+  "collectionName": "stays",
+  "info": {
+    "name": "stay",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "person": {
+      "model": "person"
+    },
+    "from": {
+      "type": "date",
+      "required": true
+    }
+  }
+}
