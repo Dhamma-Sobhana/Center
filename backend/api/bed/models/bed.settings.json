@@ -1,8 +1,9 @@
 {
   "kind": "collectionType",
-  "collectionName": "people",
+  "collectionName": "beds",
   "info": {
-    "name": "Person"
+    "name": "bed",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -13,8 +14,12 @@
   "attributes": {
     "name": {
       "type": "string",
-      "required": true,
-      "unique": true
+      "required": true
+    },
+    "rooms": {
+      "collection": "room",
+      "via": "beds",
+      "dominant": true
     }
   }
 }

@@ -2,7 +2,7 @@
   "kind": "collectionType",
   "collectionName": "stays",
   "info": {
-    "name": "stay",
+    "name": "Stay",
     "description": ""
   },
   "options": {
@@ -12,12 +12,43 @@
   },
   "pluginOptions": {},
   "attributes": {
+    "bed": {
+      "model": "bed"
+    },
     "person": {
       "model": "person"
     },
     "from": {
       "type": "date",
       "required": true
+    },
+    "to": {
+      "type": "date",
+      "required": true
+    },
+    "purpose": {
+      "type": "enumeration",
+      "enum": [
+        "sitting",
+        "serving",
+        "long_time_serving",
+        "project"
+      ],
+      "required": false
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "confirmed",
+        "canceled",
+        "checked_in",
+        "checked_out",
+        "time_off"
+      ],
+      "default": "confirmed"
+    },
+    "room": {
+      "model": "room"
     }
   }
 }

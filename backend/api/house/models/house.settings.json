@@ -1,8 +1,9 @@
 {
   "kind": "collectionType",
-  "collectionName": "people",
+  "collectionName": "houses",
   "info": {
-    "name": "Person"
+    "name": "House",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -13,8 +14,11 @@
   "attributes": {
     "name": {
       "type": "string",
-      "required": true,
-      "unique": true
+      "required": true
+    },
+    "rooms": {
+      "via": "house",
+      "collection": "room"
     }
   }
 }
