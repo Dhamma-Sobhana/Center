@@ -43,10 +43,11 @@
 					href='/login'><i class="bi bi-key"></i> Please login</a>
 				{/if}
 			</ul>
-			<span class="nav-text">
+			<span class="user nav-text d-inline-flex align-items-center">
 				{#if $user}
-				{$user.username}
-				
+				<span class="name">
+				{$user.username} 
+				</span>
 				<a
 					data-toggle="collapse" data-target=".navbar-collapse"
 					aria-current="page"
@@ -57,3 +58,13 @@
 		</div>
 	</div>
 </nav>
+
+<style>
+	.user {
+		font-size: 1.2em;
+	}
+	.user a {
+		text-decoration: none;
+		padding: 0 0.5em;
+	}
+</style>
