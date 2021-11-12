@@ -23,27 +23,3 @@ export const pages = [{
 },];
 
 export const stays = writable([])
-
-const fetchStays = async () => {
-    const url = 'http://localhost:1337/stays'
-    const res = await fetch(url)
-    stays.set(await res.json())
-}
-
-export const pokemon = writable([])
-
-const fetchPokemon = async () => {
-    const url = 'https://pokeapi.co/api/v2/pokemon?offset=10&limit=10'
-    const res = await fetch(url)
-    const data = await res.json()
-    const loadedPokemen = data.results.map((data, index) => {
-        return {
-            name: data.name,
-            id: index + 1,
-            image: ``
-        }
-    })
-    pokemon.set(loadedPokemen)
-}
-fetchStays()
-fetchPokemon()

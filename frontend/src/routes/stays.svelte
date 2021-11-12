@@ -1,16 +1,23 @@
 <script>
     import {stays} from "$lib/stores"
-    let title = 'Check in/out'
+
+    const fetchStays = async () => {
+        const url = 'http://localhost:1337/stays'
+        const token = localStorage.getItem('token')
+        const res = await fetch(url, { headers: { Authorization: `Bearer ${token}`}})
+        stays.set(await res.json())
+    }
+    fetchStays()
 </script>
 
 <svelte:head>
-    <title>{title}</title>
+    <title>Check in/out</title>
 </svelte:head>
 
 <div class="container">
     <div class="row">
         <div class="col">
-            <h1 class="display-2">{title}</h1>
+            <h1 class="display-2">Check in/out</h1>
             <p>A liste of people staying</p>
         </div>
     </div>
@@ -19,9 +26,9 @@
             <table class="table">
             {#each $stays as stay}
             <tr>
-                <td>{stay.id}</td>
                 <td>{stay.person.name}</td>
                 <td>{stay.from}</td>
+                <td>{stay.to}</td>
             </tr>
             {:else}
             <tr>
