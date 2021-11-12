@@ -16,7 +16,7 @@
     <div class="row">
         <div class="col">
             <h1 class="display-2">An error has occurred</h1>
-            <p>Stay safe</p>
+            <p>Details:</p>
             
             <pre>{title}</pre>
         </div>
