@@ -31,7 +31,7 @@
 							class:active={$page.path === _page.path}
 							data-toggle="collapse" data-target=".navbar-collapse"
 							aria-current="page"
-							href={_page.path}>{_page.text}</a
+							href={_page.path}>{_page.title}</a
 						>
 					</li>
 				{/each}

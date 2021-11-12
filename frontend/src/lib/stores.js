@@ -1,23 +1,28 @@
 import { writable } from "svelte/store";
 
 export const pages = [{
-    text: 'Check in/out',
+    title: 'Check in/out',
+    description: 'Arriving at or leaving the center.',
     path: '/stays',
     icon: 'person-check'
 },{
-    text: 'Between course rules',
+    title: 'Between course rules',
+    description: 'Rules that apply while staying at the center.',
     path: '/rules',
     icon: 'text-paragraph'
 },{
-    text: 'Who is here',
+    title: 'Who is here',
+    description: 'List who is currently here and where they stay.',
     path: '/here',
     icon: 'people'
 },{
-    text: 'Manuals',
+    title: 'Manuals',
+    description: 'Instructions for doing tasks at the center.',
     path: '/manuals',
     icon: 'book'
 },{
-    text: 'Find your way around',
+    title: 'Find your way around',
+    description: 'Find out where things are located',
     path: '/navigate',
     icon: 'pin-map'
 },];
