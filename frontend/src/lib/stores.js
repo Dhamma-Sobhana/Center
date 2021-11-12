@@ -3,7 +3,7 @@ import { writable, derived } from "svelte/store";
 export const pages = [{
     title: 'Check in/out',
     description: 'Arriving at or leaving the center.',
-    path: '/stays',
+    path: '/stay',
     icon: 'person-check'
 },{
     title: 'Between course rules',
@@ -38,3 +38,10 @@ export const leaving = derived(
     stays,
     $stays => $stays.filter(stay => stay.status == 'checked_in')
 )
+
+export const fetchStays = async () => {
+    const url = 'http://localhost:1337/stays'
+    const token = localStorage.getItem('token')
+    const res = await fetch(url, { headers: { Authorization: `Bearer ${token}`}})
+    stays.set(await res.json())
+}

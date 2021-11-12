@@ -5,6 +5,7 @@
     typeof window !== `undefined` && import("bootstrap/js/src/collapse")
 
     import userStore from '$lib/user'
+    import { fetchStays}  from '$lib/stores'
     import { onMount } from 'svelte'
 
     let loading = true
@@ -23,6 +24,7 @@
         if (res.ok) {
             $userStore = user
         }
+        fetchStays()
     })
 </script>
 

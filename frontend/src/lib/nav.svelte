@@ -8,7 +8,7 @@
 	<div class="container-fluid">
 		<a class="navbar-brand" data-toggle="collapse" data-target=".navbar-collapse" href="/">
 			<i class="bi bi-house"></i>
-			Home
+			Sobhana
 		</a>
 		<button
 			class="navbar-toggler"
