@@ -1,11 +1,10 @@
 <script>
-    import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
-	import user from '$lib/user';
+	import userStore from '$lib/user';
 
-	let email = '';
-	let password = '';
-    let error = '';
+	let email;
+	let password;
+    let error;
 
 	async function login(event) {
         let form = event.srcElement
@@ -22,7 +21,7 @@
 			const data = await res.json();
 			localStorage.setItem('token', data.jwt);
 			if (data) {
-				$user = data.user;
+				$userStore = data.user;
 				goto('/');
 			}
 		} else {
@@ -38,19 +37,21 @@
 	<title>Login</title>
 </svelte:head>
 
+<slot/>
+
 <div class="container">
-	<form on:submit|preventDefault={login} class="row g-3 needs-validation" novalidate>
+	<form on:submit|preventDefault={login} class="row g-3 needs-validation col-sm-6" novalidate>
 		<div class="col-12">
             <h1>Login</h1>
         </div>
-		<div class="col">
+		<div class="col-12">
 			<label for="email" class="form-label">Email</label>
 			<input type="email" id="email" bind:value={email} required class="form-control" />
             <div class="invalid-feedback">
                 A valid Email is required
             </div>
 		</div>
-		<div class="col">
+		<div class="col-12">
 			<label for="password" class="form-label">Password</label>
 			<input type="password" bind:value={password} required class="form-control" />
             <div class="invalid-feedback">
@@ -59,12 +60,12 @@
 		</div>
 
         {#if error}
-        <div class="col-s12 text-danger">
+        <div class="col-12 text-danger">
             Failed to login: { error }
         </div>
         {/if}
 
-        <div class="col-s12">
+        <div class="col-12 d-grid gap-2">
             <button type="submit" class="btn btn-primary">Login</button>
         </div>
 	</form>

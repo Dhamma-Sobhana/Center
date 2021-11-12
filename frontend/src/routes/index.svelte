@@ -1,5 +1,6 @@
 <script>
     import { pages } from '$lib/stores';
+    import user from '$lib/user'
 </script>
 
 <svelte:head>
@@ -13,6 +14,7 @@
         </div>
     </div>
     <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4">
+        {#if $user}
         {#each pages as page}
         <div class="col">
             <div class="card h-100 text-dark bg-light border-light">
@@ -23,6 +25,17 @@
             </div>
         </div>
         {/each}
+        {:else}
+        <div class="col">
+            <div class="card h-100 text-dark bg-light border-light">
+                <div class="card-header"><i class="bi bi-key"></i></div>
+                <div class="card-body">
+                    <h2 class="card-title"><a href="/login" class="stretched-link">Login required</a></h2>
+                    <p>You have to be logged in to show content.</p>
+                </div>
+            </div>
+        </div>
+        {/if}
     </div>
 </div>
 
