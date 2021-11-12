@@ -40,13 +40,13 @@
 </script>
 
 <svelte:head>
-    Check out: {stay.person.name}
+    <title>Check out: {stay.person.name}</title>
 </svelte:head>
 
 <div class="container">
     <div class="row">
         <div class="col-12 col-md-6">
-            <h1 class="display-2">Check out</h1>
+            <h1 class="display-2 mb-3">Check out</h1>
             <h2>{stay.person.name}</h2>
 
             <dl class="row mt-3">

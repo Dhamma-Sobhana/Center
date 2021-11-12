@@ -26,7 +26,7 @@
                     <tr>
                         <th>Name</th>
                         <th>Arrival</th>
-                        <th class="text-center">Check in</th>
+                        <th class="text-center">Check&nbsp;in</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -51,7 +51,7 @@
                     <tr>
                         <th>Name</th>
                         <th>Departure</th>
-                        <th class="text-center">Check out</th>
+                        <th class="text-center">Check&nbsp;out</th>
                     </tr>
                 </thead>
                 <tbody>
