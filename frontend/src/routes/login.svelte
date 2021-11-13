@@ -42,7 +42,7 @@
 <div class="container">
 	<form on:submit|preventDefault={login} class="row g-3 needs-validation col-sm-6" novalidate>
 		<div class="col-12">
-            <h1>Login</h1>
+            <h1 class="display-2 mb-2">Login</h1>
         </div>
 		<div class="col-12">
 			<label for="email" class="form-label">Email</label>

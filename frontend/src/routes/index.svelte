@@ -1,6 +1,11 @@
 <script>
+    import { goto } from '$app/navigation';
+
     import { pages } from '$lib/stores';
     import user from '$lib/user'
+
+    if ($user === undefined)
+        goto('/login')  
 </script>
 
 <svelte:head>
