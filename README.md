@@ -10,21 +10,24 @@ Setup with docker compose.
 
 # Configuration
 
-Copy `.env.example` to `.env` and set **VIRTUAL_HOST** to your domain name.
+Copy `.env.example` to `.env` and set **VIRTUAL_HOST** to your domain name. **ADMIN_EMAIL** is used for LetsEncrypt.
 
 # Start
 
-    docker-compose up
+    docker-compose up --build
 
 Frontend is available at [VIRTUAL_HOST].
 
 Backend is available at api.[VIRTUAL_HOST].
 
+## TODO
+Look att running API in a path which would require one less DNS record and SSL certificate.
+
 # What about SSL?
 
-I did try to integrate LetsEncrypt but ran into a hen and egg situation with nginx requiring a certificate to start and certbot requring nginx to be running to request a certificate. There are ways to work around this but they initially were to complicated.
+Traefik is requesting and renewing LetsEncrypt certificate. Trafic is passed on to nginx-proxy.
 
-Usually I run services behind CloudFlare which can handle SSL but I suppose the connection between CloudFlare and the service should be encrypted as well, even if just with a self signed certificate.
+https://doc.traefik.io/traefik/user-guides/docker-compose/acme-http/
 
 # Resources
 
