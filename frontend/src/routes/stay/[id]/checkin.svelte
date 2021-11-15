@@ -10,8 +10,10 @@
 
 <script>
     import { goto } from "$app/navigation";
+    import { post } from "$lib/api";
 
-    import { stays, fetchStays } from "$lib/stores";
+    import { stays } from "$lib/stays";
+    import { get } from "svelte/store";
 
     export let id;
     $: stay = $stays.find(s => s.id == id)
@@ -21,19 +23,13 @@
         form.classList.add('was-validated')
         if (!form.checkValidity())
             return
-        
-        const res = await fetch(`http://localhost:1337/stays/${id}/checkin`, {
-            method: 'POST',
-            headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}`}
-        })
 
-        if (res.ok) {
-            fetchStays()
+        try {
+            const response = await post(`stays/${id}/checkin`)
             goto('/stay')
-        } else {
-            const data = await res.json()
-            if (data?.message?.[0]?.messages?.[0]?.message) {
-                alert(data.message[0].messages[0].message)
+        } catch (err) {
+            if (err?.message?.[0]?.messages?.[0]?.message) {
+                alert(err.message[0].messages[0].message)
 			}
         }
     }

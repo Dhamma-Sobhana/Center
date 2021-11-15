@@ -1,5 +1,6 @@
 <script>
 	import { goto } from '$app/navigation';
+	import { post } from '$lib/api';
 	import userStore from '$lib/user';
 
 	let email;
@@ -11,23 +12,17 @@
         form.classList.add('was-validated')
         if (!form.checkValidity())
             return
-        
-		const res = await fetch('http://localhost:1337/auth/local', {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-			body: JSON.stringify({ identifier: email, password })
-		});
-		if (res.ok) {
-			const data = await res.json();
+
+		try {
+			let data = await post('auth/local', { identifier: email, password })
 			localStorage.setItem('token', data.jwt);
-			if (data) {
+			if (data?.user) {
 				$userStore = data.user;
 				goto('/');
 			}
-		} else {
-			const data = await res.json();
-			if (data?.message?.[0]?.messages?.[0]?.message) {
-                error = data.message[0].messages[0].message
+		} catch (err) {
+			if (err?.message?.[0]?.messages?.[0]?.message) {
+                error = err.message[0].messages[0].message
 			}
 		}
 	}

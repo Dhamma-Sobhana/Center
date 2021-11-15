@@ -1,7 +1,7 @@
 <script>
     import { goto } from '$app/navigation';
 
-    import { pages } from '$lib/stores';
+    import { pages } from '$lib/config';
     import user from '$lib/user'
 
     if ($user === undefined)

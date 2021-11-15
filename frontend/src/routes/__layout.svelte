@@ -5,8 +5,9 @@
     typeof window !== `undefined` && import("bootstrap/js/src/collapse")
 
     import userStore from '$lib/user'
-    import { fetchStays}  from '$lib/stores'
-    import { onMount } from 'svelte'
+    import { get } from '$lib/api'
+    import { fetchStays }  from '$lib/stays'
+    import { createEventDispatcher, onMount } from 'svelte'
 
     let loading = true
 
@@ -16,15 +17,14 @@
             return {props: {user:null}}
         }
 
-        const res = await fetch('http://localhost:1337/auth/me', {
-            headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
-        })
-        const user = await res.json()
-        loading = false
-        if (res.ok) {
-            $userStore = user
+        try {
+            $userStore = await get('auth/me')
+            fetchStays()
+        } catch (err) {
+            console.log('Error fetching current user')
         }
-        fetchStays()
+        loading = false
+        
     })
 </script>
 

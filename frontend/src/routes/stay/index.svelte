@@ -1,9 +1,11 @@
 <script>
-    import {arriving, leaving} from "$lib/stores"
+    import {arriving, fetchStays, leaving} from "$lib/stays"
 
     // Create a formatter using the "sv-SE" locale
     const dateFormatter = Intl.DateTimeFormat('sv-SE');
     let date = dateFormatter.format(new Date())
+
+    fetchStays()
 </script>
 
 <svelte:head>
