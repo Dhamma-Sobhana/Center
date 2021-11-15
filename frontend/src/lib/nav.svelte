@@ -1,6 +1,6 @@
 <script>
 	import { page } from '$app/stores';
-	import { pages } from '$lib/stores';
+	import { pages } from '$lib/config';
 	import user from '$lib/user'
 </script>
 
