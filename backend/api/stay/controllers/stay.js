@@ -8,18 +8,20 @@ const { sanitizeEntity } = require('strapi-utils');
  */
 
 module.exports = {
-  checkin: async () => {
-    let entity = await strapi.services.stay.findOne();
+  checkin: async (ctx) => {
+    const { id } = ctx.params;
+    let entity = await strapi.services.stay.findOne({ id });
     entity.status = 'checked_in'
-    entity = await strapi.services.stay.update(entity.id, entity);
+    entity = await strapi.services.stay.update({ id }, entity);
 
     return sanitizeEntity(entity, { model: strapi.models.stay });
   },
 
-  checkout: async () => {
-    let entity = await strapi.services.stay.findOne();
+  checkout: async (ctx) => {
+    const { id } = ctx.params;
+    let entity = await strapi.services.stay.findOne({ id });
     entity.status = 'confirmed' // TODO: Should be checked_out
-    entity = await strapi.services.stay.update(entity.id, entity);
+    entity = await strapi.services.stay.update({ id }, entity);
 
     return sanitizeEntity(entity, { model: strapi.models.stay });
   }
