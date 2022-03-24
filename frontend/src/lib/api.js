@@ -1,4 +1,17 @@
-const base = 'http://localhost:1337'
+import { writable, get as gets} from "svelte/store";
+
+export const host = writable()
+
+// Get host value from store, set by __layout
+function getBase() {
+    if (gets(host) == 'localhost') {
+        return 'http://api.localhost'
+    } else if (gets(host) == 'localhost:3000') {
+        return 'http://localhost:1337'
+    } else {
+        return `http://api.${gets(host)}`
+    }
+}
 
 // https://github.com/sveltejs/realworld/blob/d2156528e6f52222494339b12d437f96ab028fe6/src/lib/api.js
 async function send({method, path, data}) {
@@ -13,7 +26,7 @@ async function send({method, path, data}) {
         opts.headers['Authorization'] = `Bearer ${localStorage.getItem('token')}`
     }
 
-    let response = await fetch(`${base}/${path}`, opts)
+    let response = await fetch(`${getBase()}/${path}`, opts)
     let result;
 
     try {

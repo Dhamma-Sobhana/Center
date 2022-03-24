@@ -1,3 +1,10 @@
+<script context="module">
+    import { host } from '$lib/api'
+    export async function load({page}) {
+        host.set(page.host);
+        return {}
+    }
+</script>
 <script>
     import Nav from "$lib/nav.svelte";
     import "bootstrap/dist/css/bootstrap.min.css";
@@ -7,10 +14,10 @@
     import userStore from '$lib/user'
     import { get } from '$lib/api'
     import { fetchStays }  from '$lib/stays'
-    import { createEventDispatcher, onMount } from 'svelte'
+    import { onMount } from 'svelte'
 
     let loading = true
-
+    
     onMount(async() => {
         if (!localStorage.getItem('token')) {
             loading = false
