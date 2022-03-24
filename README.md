@@ -1,6 +1,6 @@
-# Strapi Svelte template
+# Center
 
-A template for creating new projects.
+A web app to help with running a Vipassana center.
 
 Strapi for backend. 
 Svelte with SvelteKit for frontend.
@@ -12,7 +12,13 @@ Setup with docker compose.
 
 Copy `.env.example` to `.env` and set **VIRTUAL_HOST** to your domain name. **ADMIN_EMAIL** is used for LetsEncrypt.
 
-# Start
+# Development
+
+Started with:
+
+    docker-compose -f docker-compose.dev.yaml up --build
+
+# Deployement
 
     docker-compose up --build
 
@@ -21,7 +27,7 @@ Frontend is available at [VIRTUAL_HOST].
 Backend is available at api.[VIRTUAL_HOST].
 
 ## TODO
-Look att running API in a path which would require one less DNS record and SSL certificate.
+Look att running API in a path (host/api) which would require one less DNS record and SSL certificate.
 
 # What about SSL?
 
