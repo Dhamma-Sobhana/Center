@@ -1,7 +1,7 @@
 <script context="module">
     import { host } from '$lib/api'
-    export async function load({page}) {
-        host.set(page.host);
+    export async function load({url}) {
+        host.set(url.host);
         return {}
     }
 </script>
