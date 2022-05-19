@@ -1,6 +1,6 @@
 <script context="module">
-    export async function load({page}) {
-        let id = page.params.id
+    export async function load({params}) {
+        let id = params.id
 
         return {props: {
             id

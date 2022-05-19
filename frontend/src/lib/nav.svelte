@@ -28,7 +28,7 @@
 					<li class="nav-item">
 						<a
 							class="nav-link"
-							class:active={$page.path === _page.path}
+							class:active={$page.url.pathname === _page.path}
 							data-toggle="collapse" data-target=".navbar-collapse"
 							aria-current="page"
 							href={_page.path}>{_page.title}</a
