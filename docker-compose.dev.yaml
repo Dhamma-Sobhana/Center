@@ -14,7 +14,12 @@ services:
       - ./frontend:/usr/src/app
       - /usr/src/app/node_modules
   backend:
-    image: strapi/strapi
+    #image: backend:latest
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    restart: unless-stopped
+    env_file: .env
     environment:
       DATABASE_CLIENT: postgres
       DATABASE_NAME: strapi
@@ -22,13 +27,18 @@ services:
       DATABASE_PORT: 5432
       DATABASE_USERNAME: strapi
       DATABASE_PASSWORD: strapi
+    links:
+      - postgres:postgres
     volumes:
-      - ./backend:/srv/app
+      - ./backend/config:/opt/app/config
+      - ./backend/src:/opt/app/src
+      - ./backend/package.json:/opt/package.json
+      - ./backend/package-lock.json:/opt/package-lock.json
+      - ./backend/.env:/opt/app/.env
     ports:
       - '1337:1337'
     depends_on:
       - postgres
-    restart: unless-stopped
   postgres:
     image: postgres
     environment:
