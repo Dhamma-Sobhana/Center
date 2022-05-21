@@ -24,12 +24,9 @@
             return {props: {user:null}}
         }
 
-        try {
-            $userStore = await get('auth/me')
-            fetchStays()
-        } catch (err) {
-            console.log('Error fetching current user')
-        }
+        $userStore = await get('users/me')
+        fetchStays()
+
         loading = false
         
     })
