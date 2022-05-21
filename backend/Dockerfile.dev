@@ -1,0 +1,25 @@
+FROM node:16
+
+# Installing libvips-dev for sharp compatability
+RUN apt-get update && apt-get install libvips-dev  -y
+
+# Set the Node environment to development to ensure all packages are installed
+ENV NODE_ENV development
+
+# Change our current working directory
+WORKDIR /opt/
+
+# Copy over `package.json` and lock files to optimize the build process
+COPY ["package.json", "package-lock.json*", "./"]
+
+ENV PATH /opt/node_modules/.bin:$PATH
+
+RUN npm install
+
+WORKDIR /opt/app
+COPY ./ .
+
+RUN npm run build
+EXPOSE 1337
+
+CMD ["npm", "run", "develop"]

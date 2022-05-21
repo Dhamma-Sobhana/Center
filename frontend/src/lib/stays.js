@@ -1,3 +1,4 @@
+import { get_root_for_style } from "svelte/internal";
 import { writable, derived } from "svelte/store";
 import { get } from "./api";
 
@@ -14,5 +15,6 @@ export const leaving = derived(
 )
 
 export const fetchStays = async () => {
-    stays.set(await get('stays'))
+    let results = await get('stays?populate=bed,person,room.house')
+    stays.set(results.data)
 }

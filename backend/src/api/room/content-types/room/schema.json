@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "rooms",
+  "info": {
+    "singularName": "room",
+    "pluralName": "rooms",
+    "displayName": "Room"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "house": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::house.house",
+      "inversedBy": "rooms"
+    },
+    "beds": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::bed.bed",
+      "inversedBy": "rooms"
+    }
+  }
+}

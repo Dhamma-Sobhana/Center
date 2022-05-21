@@ -1,11 +1,20 @@
 <script>
+    import { onMount } from 'svelte';
+    import { goto } from "$app/navigation";
     import {arriving, fetchStays, leaving} from "$lib/stays"
 
     // Create a formatter using the "sv-SE" locale
     const dateFormatter = Intl.DateTimeFormat('sv-SE');
     let date = dateFormatter.format(new Date())
 
-    fetchStays()
+    onMount(async () => {
+        try {
+            await fetchStays()
+        } catch (err) {
+            console.log('Failed to load stays')
+            goto('/')
+        }
+    })
 </script>
 
 <svelte:head>
