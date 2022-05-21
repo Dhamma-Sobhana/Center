@@ -20,6 +20,8 @@ Started with:
 
     docker-compose -f docker-compose.dev.yaml up --build
 
+**Notice:** Backend can take a long to build the first time.
+
 ## Deployement
 
     docker-compose up --build
@@ -39,6 +41,45 @@ Under *Collection Types*, open *Users*.
 Add a new user. Make sure to set *Confirmed* to *ON* and *Role* to *Authenticated*.
 
 Add other data as needed.
+
+Select the following to configure endpoint access.
+
+Navigate to Settings > USERS & PERMISSIONS PLUGIN > Roles > Authenticated:
+
+APPLICATION > Bed
+
+  find, findone
+
+APPLICATION > House
+
+  find, findone
+
+APPLICATION > Person
+
+  find, findone
+
+APPLICATION > Room
+
+  find, findone
+
+APPLICATION > Stay
+
+  checking, checkout, find, findone
+
+
+USER-PERMISSIONS > USER
+
+  me
+
+Navigate to Settings > USERS & PERMISSIONS PLUGIN > Roles > Public:
+
+USER-PERMISSIONS > AUTH
+
+  callback, connect
+
+To make it easier to distribute project and deployment, check out this plugin:
+
+https://github.com/boazpoolman/strapi-plugin-config-sync
 
 **TODO:** Prepopulate data on first run, like houses, rooms, people and so on.
 
