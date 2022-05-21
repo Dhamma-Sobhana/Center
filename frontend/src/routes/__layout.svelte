@@ -7,6 +7,7 @@
 </script>
 <script>
     import Nav from "$lib/nav.svelte";
+    import { goto } from '$app/navigation';
     import "bootstrap/dist/css/bootstrap.min.css";
     import "bootstrap-icons/font/bootstrap-icons.css";
     typeof window !== `undefined` && import("bootstrap/js/src/collapse")
@@ -24,11 +25,14 @@
             return {props: {user:null}}
         }
 
-        $userStore = await get('users/me')
-        fetchStays()
-
-        loading = false
-        
+        try  {
+            $userStore = await get('users/me')
+            fetchStays()
+        } catch (error) {
+            goto('/login')
+        } finally {
+            loading = false
+        }
     })
 </script>
 
