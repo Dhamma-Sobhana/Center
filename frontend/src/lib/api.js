@@ -5,11 +5,11 @@ export const host = writable()
 // Get host value from store, set by __layout
 function getBase() {
     if (gets(host) == 'localhost') {
-        return 'http://api.localhost'
+        return 'http://api.localhost/api'
     } else if (gets(host) == 'localhost:3000') {
-        return 'http://localhost:1337'
+        return 'http://localhost:1337/api'
     } else {
-        return `http://api.${gets(host)}`
+        return `http://api.${gets(host)}/api`
     }
 }
 
