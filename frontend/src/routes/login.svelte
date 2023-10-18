@@ -23,6 +23,8 @@
 		} catch (err) {
 			if (err?.message?.[0]?.messages?.[0]?.message) {
                 error = err.message[0].messages[0].message
+			} else {
+				error = "An unhandled error occurred"
 			}
 		}
 	}

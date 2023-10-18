@@ -4,8 +4,10 @@
     import { pages } from '$lib/config';
     import user from '$lib/user'
 
-    if ($user === undefined)
-        goto('/login')  
+    if ($user === undefined) {
+        localStorage.removeItem('token')
+        goto('/login')
+    }
 </script>
 
 <svelte:head>
