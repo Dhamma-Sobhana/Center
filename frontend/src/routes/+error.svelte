@@ -1,15 +1,5 @@
-<script context="module">
-	export function load({ error, status }) {
-		return {
-			props: {
-				title: `${status}: ${error.message}`
-			}
-		};
-	}
-</script>
-
 <script>
-	export let title;
+	import { page } from '$app/stores';
 </script>
 
 <div class="container">
@@ -18,7 +8,7 @@
             <h1 class="display-2">An error has occurred</h1>
             <p>Details:</p>
             
-            <pre>{title}</pre>
+            <pre>{$page.status} : {$page.error.message}</pre>
         </div>
     </div>
 </div>

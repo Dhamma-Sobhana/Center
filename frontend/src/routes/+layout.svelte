@@ -1,11 +1,9 @@
-<script context="module">
-    import { host } from '$lib/api'
-    export async function load({url}) {
-        host.set(url.host);
-        return {}
-    }
-</script>
 <script>
+    import { host } from '$lib/api'
+    import { page } from '$app/stores';
+
+    host.set($page.url.host)
+    
     import Nav from "$lib/nav.svelte";
     import { goto } from '$app/navigation';
     import "bootstrap/dist/css/bootstrap.min.css";

@@ -1,21 +1,13 @@
-<script context="module">
-    export async function load({params}) {
-        let id = params.id
-
-        return {props: {
-            id
-        }}
-    }
- </script>
-
 <script>
     import { goto } from "$app/navigation";
     import { post } from '$lib/api'
 
     import { stays } from "$lib/stays";
 
-    export let id;
-    $: stay = $stays.find(s => s.id == id)
+    /** @type {import('./$types').PageData */
+    export let data;
+
+    $: stay = $stays.find(s => s.id == data.id)
 
     async function handleSubmit(event) {
         let form = event.srcElement
@@ -25,7 +17,7 @@
         
 
         try {
-            const response = await post(`stays/${id}/checkout`)
+            const response = await post(`stays/${data.id}/checkout`)
             goto('/stay')
         } catch (err) {
             if (err?.message?.[0]?.messages?.[0]?.message) {
